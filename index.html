@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=cecf9011-b080-465b-9bdc-8b5a8715957d
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mari ColMa · Cuadros y Manualidades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800;12..96,900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF9F2;
+    --ink:#1B1035;
+    --coral:#FF5A5F;
+    --violet:#7C5CFC;
+    --marigold:#FFC53D;
+    --teal:#17B8A6;
+    --paper:#FFFFFF;
+    --line: rgba(27,16,53,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    line-height:1.02;
+    letter-spacing:-0.02em;
+  }
+  .mono{
+    font-family:'Space Mono', monospace;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  ::selection{background:var(--marigold); color:var(--ink);}
+
+  /* ---------- FOCUS STATES ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--violet);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,249,242,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-size:22px;
+    font-weight:800;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{
+    width:11px; height:11px; border-radius:50%;
+    background:var(--coral);
+    display:inline-block;
+  }
+  nav.links{display:flex; gap:34px; font-size:15px; font-weight:600;}
+  nav.links a{position:relative; padding:4px 0;}
+  nav.links a::after{
+    content:"";
+    position:absolute; left:0; bottom:-2px;
+    width:0%; height:3px;
+    background:var(--marigold);
+    transition:width .25s ease;
+    border-radius:2px;
+  }
+  nav.links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--ink); color:var(--cream);
+    padding:10px 20px; border-radius:100px;
+    font-weight:600; font-size:14px;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--coral); color:var(--ink);}
+  .burger{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:96px 32px 120px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    max-width:1180px; margin:0 auto;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Space Mono', monospace;
+    font-size:13px; letter-spacing:0.06em;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:7px 14px;
+    border-radius:100px;
+    margin-bottom:26px;
+  }
+  .eyebrow .dot{width:8px; height:8px; border-radius:50%; background:var(--teal);}
+  .hero h1{
+    font-size:clamp(42px, 6vw, 74px);
+    margin-bottom:22px;
+  }
+  .hero h1 .accent{
+    color:var(--coral);
+    position:relative;
+    display:inline-block;
+  }
+  .hero h1 .accent svg{
+    position:absolute; left:-4%; bottom:-14px; width:108%; height:18px;
+  }
+  .hero p.lede{
+    font-size:19px;
+    line-height:1.55;
+    max-width:46ch;
+    color:rgba(27,16,53,0.72);
+    margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 26px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:15px;
+    border:2px solid var(--ink);
+    transition:transform .18s ease, background .18s ease, color .18s ease;
+  }
+  .btn-solid{background:var(--ink); color:var(--cream);}
+  .btn-solid:hover{transform:translateY(-2px); background:var(--violet); border-color:var(--violet); color:#fff;}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{transform:translateY(-2px); background:var(--paper);}
+
+  /* hero pinboard */
+  .pinboard{
+    position:relative;
+    height:460px;
+  }
+  .pin-card{
+    position:absolute;
+    width:190px;
+    background:var(--paper);
+    padding:12px 12px 18px;
+    border-radius:6px;
+    box-shadow:0 18px 34px rgba(27,16,53,0.16);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .pin-card:hover{transform:rotate(0deg) scale(1.04) !important; box-shadow:0 24px 44px rgba(27,16,53,0.24);}
+  .pin-card .art{
+    width:100%; aspect-ratio:4/5;
+    border-radius:3px;
+    margin-bottom:10px;
+    object-fit:cover;
+    display:block;
+    background:var(--cream);
+  }
+  .pin-card .tape{
+    position:absolute; top:-10px; left:50%; transform:translateX(-50%) rotate(-3deg);
+    width:56px; height:22px;
+    background:rgba(255,197,61,0.85);
+    border:1px solid rgba(255,255,255,0.5);
+  }
+  .pin-card .cap{font-family:'Space Mono',monospace; font-size:11px; color:rgba(27,16,53,0.6);}
+  .pin1{top:0; left:10%; transform:rotate(-7deg); z-index:2;}
+  .pin2{top:40px; left:52%; transform:rotate(5deg); z-index:3;}
+  .pin3{top:250px; left:6%; transform:rotate(4deg); z-index:1; width:160px;}
+  .pin4{top:220px; left:56%; transform:rotate(-6deg); z-index:2; width:170px;}
+
+  .art-a{background:linear-gradient(135deg,#FF9A8B,#FF5A5F 40%,#7C5CFC);}
+  .art-b{background:linear-gradient(160deg,#FFD86B,#FFC53D 45%,#17B8A6);}
+  .art-c{background:linear-gradient(140deg,#8FE3D0,#17B8A6 50%,#1B1035);}
+  .art-d{background:linear-gradient(150deg,#C9B6FF,#7C5CFC 55%,#FF5A5F);}
+  .art-e{background:linear-gradient(145deg,#FFC1CC,#FF5A5F 50%,#FFC53D);}
+  .art-f{background:linear-gradient(150deg,#B7E4FF,#17B8A6 45%,#7C5CFC);}
+
+  /* divider */
+  .brush-divider{
+    display:block; width:100%; height:44px;
+    margin-top:-2px;
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section{padding:100px 32px;}
+  .section-head{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    margin-bottom:52px; flex-wrap:wrap; gap:20px;
+  }
+  .kicker{
+    font-family:'Space Mono', monospace;
+    font-size:13px; letter-spacing:0.08em;
+    color:var(--coral); text-transform:uppercase;
+    margin-bottom:12px; display:block;
+  }
+  .section-head h2{font-size:clamp(30px,4vw,44px);}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{
+    display:grid; grid-template-columns:0.8fr 1.2fr; gap:64px; align-items:center;
+  }
+  .about-frame{
+    position:relative;
+    aspect-ratio:3/4;
+    border-radius:10px;
+    background:linear-gradient(160deg,#FFD86B,#FF5A5F 55%,#7C5CFC);
+    padding:14px;
+  }
+  .about-frame::before{
+    content:"";
+    position:absolute; inset:14px;
+    border-radius:4px;
+    background:linear-gradient(200deg, rgba(255,255,255,0.25), rgba(0,0,0,0.08));
+  }
+  .about-frame .about-photo{
+    width:100%; height:100%;
+    object-fit:cover;
+    border-radius:4px;
+    position:relative;
+    z-index:1;
+    display:block;
+  }
+  .about-frame .label{
+    position:absolute; bottom:-16px; left:24px;
+    background:var(--ink); color:var(--cream);
+    font-family:'Space Mono',monospace; font-size:12px;
+    padding:8px 14px; border-radius:100px;
+  }
+  .about-copy p{
+    font-size:17px; line-height:1.7;
+    color:rgba(27,16,53,0.78);
+    margin-bottom:20px;
+    max-width:56ch;
+  }
+  .about-copy p strong{color:var(--ink);}
+  .stat-row{display:flex; gap:40px; margin-top:36px; flex-wrap:wrap;}
+  .stat b{font-size:32px; display:block; font-family:'Bricolage Grotesque'; font-weight:800;}
+  .stat span{font-size:13px; color:rgba(27,16,53,0.6); font-family:'Space Mono',monospace;}
+
+  /* ---------- GALLERY ---------- */
+  .filters{display:flex; gap:10px; flex-wrap:wrap;}
+  .filter-btn{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    padding:9px 18px;
+    border-radius:100px;
+    border:1.5px solid var(--ink);
+    background:transparent;
+    cursor:pointer;
+    transition:all .18s ease;
+  }
+  .filter-btn.active, .filter-btn:hover{
+    background:var(--ink); color:var(--cream);
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+  }
+  .g-card{
+    background:var(--paper);
+    border-radius:8px;
+    padding:14px 14px 20px;
+    box-shadow:0 8px 20px rgba(27,16,53,0.08);
+    transform:rotate(var(--r, -2deg));
+    transition:transform .3s ease, box-shadow .3s ease;
+    position:relative;
+  }
+  .g-card:hover{transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(27,16,53,0.18);}
+  .g-card .tape{
+    position:absolute; top:-9px; left:28px; transform:rotate(-4deg);
+    width:50px; height:20px;
+    background:rgba(124,92,252,0.7);
+  }
+  .g-card .art{width:100%; aspect-ratio:1/1; border-radius:4px; margin-bottom:14px; object-fit:cover; background-color:var(--cream);}
+  .g-card h3{font-size:19px; margin-bottom:6px;}
+  .g-card .cat{
+    display:inline-block;
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    padding:4px 10px;
+    border-radius:100px;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .cat-cuadro{background:rgba(255,90,95,0.18);}
+  .cat-manualidad{background:rgba(23,184,166,0.2);}
+  .g-card .desc{font-size:14px; color:rgba(27,16,53,0.65); margin-bottom:14px; line-height:1.5;}
+  .g-card .row{display:flex; align-items:center; justify-content:space-between;}
+  .g-card .row-single{justify-content:center;}
+  .g-card .row-single .ask-btn{width:100%; padding:11px 16px;}
+  .ask-btn{
+    font-size:13px; font-weight:700;
+    padding:9px 16px; border-radius:100px;
+    background:var(--marigold);
+    border:none; cursor:pointer;
+    transition:transform .15s ease;
+  }
+  .ask-btn:hover{transform:scale(1.06);}
+
+  .art-1{background:linear-gradient(135deg,#FFB199,#FF5A5F 50%,#7C5CFC);}
+  .art-2{background:linear-gradient(150deg,#FFE79A,#FFC53D 55%,#17B8A6);}
+  .art-3{background:linear-gradient(140deg,#A0F0DC,#17B8A6 50%,#7C5CFC);}
+  .art-4{background:linear-gradient(160deg,#D8C6FF,#7C5CFC 55%,#FF5A5F);}
+  .art-5{background:linear-gradient(145deg,#FFC9D0,#FF5A5F 55%,#FFC53D);}
+  .art-6{background:linear-gradient(150deg,#C3EEFF,#17B8A6 45%,#1B1035);}
+  .art-7{background:linear-gradient(140deg,#FFE0B3,#FF5A5F 40%,#7C5CFC);}
+  .art-8{background:linear-gradient(155deg,#B8F1E0,#17B8A6 50%,#FFC53D);}
+  .art-9{background:linear-gradient(135deg,#E3D2FF,#7C5CFC 50%,#17B8A6);}
+
+  /* ---------- SEGUNDA MANO ---------- */
+  .second-hand{
+    background:#F1FAF8;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .sh-kicker{color:var(--teal);}
+  .sh-sub{
+    font-size:15.5px;
+    color:rgba(27,16,53,0.65);
+    max-width:52ch;
+    margin-top:10px;
+    line-height:1.55;
+  }
+  .sh-filter-btn.active, .sh-filter-btn:hover{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .sh-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  .sh-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .sh-card:hover{transform:translateY(-4px); box-shadow:0 14px 26px rgba(27,16,53,0.1);}
+  .sh-card .sh-art{width:100%; aspect-ratio:1/1; object-fit:cover; background:#E6F4F1; display:block;}
+  .sh-card .sh-body{padding:14px 16px 16px;}
+  .sh-tag{
+    display:inline-block;
+    font-family:'Space Mono',monospace;
+    font-size:10.5px;
+    padding:3px 9px;
+    border-radius:100px;
+    background:rgba(23,184,166,0.16);
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .sh-card h4{font-size:15.5px; font-weight:700; margin-bottom:3px; font-family:'Inter',sans-serif;}
+  .sh-meta{font-size:12.5px; color:rgba(27,16,53,0.55); margin-bottom:10px;}
+  .sh-row{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .sh-price{font-family:'Space Mono',monospace; font-weight:700; font-size:14px;}
+  .sh-btn{
+    font-size:11.5px; font-weight:700;
+    padding:7px 12px; border-radius:100px;
+    background:var(--teal); color:#fff;
+    border:none; cursor:pointer;
+    transition:transform .15s ease;
+  }
+  .sh-btn:hover{transform:scale(1.06);}
+
+  /* ---------- TRABAJOS Y ENCARGOS ---------- */
+  .tw-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  .tw-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .tw-card .tw-art{width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#F1EEFB;}
+  .tw-card .tw-body{padding:14px 16px 16px;}
+  .tw-card h4{font-size:15px; font-weight:700; margin-bottom:4px; font-family:'Inter',sans-serif;}
+  .tw-note{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    color:rgba(27,16,53,0.5);
+  }
+
+  /* placeholder note */
+  .swap-note{
+    grid-column:1/-1;
+    text-align:center;
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    color:rgba(27,16,53,0.5);
+    border:1.5px dashed var(--line);
+    border-radius:10px;
+    padding:22px;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{background:var(--ink); color:var(--cream);}
+  .process .kicker{color:var(--marigold);}
+  .process-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:30px;
+  }
+  .p-card{
+    background:rgba(255,249,242,0.06);
+    border:1px solid rgba(255,249,242,0.14);
+    border-radius:12px;
+    padding:28px;
+  }
+  .p-card .num{
+    font-family:'Space Mono',monospace;
+    font-size:13px; color:var(--marigold);
+    margin-bottom:16px; display:block;
+  }
+  .p-card h3{font-size:21px; margin-bottom:10px;}
+  .p-card p{font-size:14.5px; line-height:1.6; color:rgba(255,249,242,0.68);}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:linear-gradient(135deg, var(--coral), var(--violet));
+    border-radius:24px;
+    margin:0 32px;
+    padding:76px 56px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact::before{
+    content:"";
+    position:absolute; right:-60px; top:-60px;
+    width:260px; height:260px; border-radius:50%;
+    background:rgba(255,255,255,0.12);
+  }
+  .contact-inner{position:relative; z-index:1; max-width:640px;}
+  .contact h2{font-size:clamp(30px,4vw,46px); margin-bottom:16px; color:#fff;}
+  .contact p{font-size:17px; line-height:1.6; opacity:0.92; margin-bottom:34px; max-width:52ch;}
+  .contact-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-white{background:#fff; color:var(--ink); border:2px solid #fff;}
+  .btn-white:hover{transform:translateY(-2px); background:var(--marigold); border-color:var(--marigold);}
+  .btn-outline-white{background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.7);}
+  .btn-outline-white:hover{background:rgba(255,255,255,0.14); transform:translateY(-2px);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:48px 32px 40px;}
+  .foot-grid{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+  .foot-grid .logo{font-size:18px;}
+  .foot-links{display:flex; gap:22px; font-size:14px; font-family:'Space Mono',monospace;}
+  .foot-links a:hover{color:var(--coral);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .pinboard{height:360px; margin-top:20px;}
+    .about-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .sh-grid{grid-template-columns:repeat(3,1fr);}
+    .tw-grid{grid-template-columns:repeat(3,1fr);}
+    .process-grid{grid-template-columns:1fr;}
+    .contact{margin:0 16px; padding:52px 28px;}
+    .section{padding:70px 20px;}
+  }
+  @media (max-width:540px){
+    .gallery-grid{grid-template-columns:1fr;}
+    .sh-grid{grid-template-columns:repeat(2,1fr);}
+    .tw-grid{grid-template-columns:repeat(2,1fr);}
+    .hero{padding:64px 20px 80px;}
+    .nav{padding:16px 20px;}
+    .stat-row{gap:26px;}
+    .pinboard{display:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="dot"></span>Mari ColMa</div>
+    <nav class="links">
+      <a href="#galeria">Galería</a>
+      <a href="#segunda-mano">Segunda mano</a>
+      <a href="#trabajos">Encargos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#proceso">Cómo comprar</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="nav-cta" href="#contacto">Pedir una pieza</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Pintura y manualidades hechas a mano</span>
+      <h1>Cada pieza sale de<br>mi mesa, no de<br><span class="accent">una fábrica.</span></h1>
+      <p class="lede">Pinto cuadros y hago manualidades una a una, con materiales que elijo yo misma. Si algo te gusta, escríbeme y hablamos del precio y los plazos.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#galeria">Ver la galería</a>
+        <a class="btn btn-ghost" href="#contacto">Escríbeme por WhatsApp</a>
+      </div>
+    </div>
+    <div class="pinboard" aria-hidden="true">
+      <div class="pin-card pin1"><div class="tape"></div><img class="art" src="imagenes/nina-muro.png" alt="Sentada en el muro"><span class="cap">acrílico · cuadro</span></div>
+      <div class="pin-card pin2"><div class="tape"></div><img class="art" src="imagenes/llaveros-reyes-magos.jpg" alt="Llaveros Reyes Magos"><span class="cap">madera · manualidad</span></div>
+      <div class="pin-card pin3"><div class="tape"></div><img class="art" src="imagenes/casita-joyero.jpg" alt="Casita joyero de madera"><span class="cap">madera · manualidad</span></div>
+      <div class="pin-card pin4"><div class="tape"></div><img class="art" src="imagenes/retrato-floral.jpg" alt="Retrato floral"><span class="cap">pintura · cuadro</span></div>
+    </div>
+  </div>
+</section>
+
+<svg class="brush-divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,20 C150,40 300,0 450,18 C600,36 750,4 900,20 C1050,36 1150,10 1200,20 L1200,44 L0,44 Z" fill="#FFFFFF"/>
+</svg>
+
+<section class="about" id="sobre-mi">
+  <div class="wrap about-grid">
+    <div class="about-frame">
+      <img class="about-photo" src="imagenes/taller.png" alt="Taller de Mari en Vitoria-Gasteiz">
+      <span class="label">taller · Vitoria-Gasteiz</span>
+    </div>
+    <div class="about-copy">
+      <span class="kicker">Sobre mí</span>
+      <h2 style="margin-bottom:22px;">Empecé pintando los fines de semana y no he parado desde entonces.</h2>
+      <p>Soy <strong>Mari</strong>, pinto sobre todo <strong>acrílico y óleo</strong>, y en los ratos libres hago manualidades: cerámica, bordado y objetos decorativos. Trabajo desde mi taller en <strong>Vitoria-Gasteiz</strong>, la ciudad donde nací y donde vivo, y todo lo que ves aquí lo hago yo, con mis manos.</p>
+      <p>No tengo una tienda con stock fijo — cada pieza es única y, cuando se vende, no vuelve a repetirse igual. Si te enamoras de algo, no lo dejes para luego.</p>
+      <div class="stat-row">
+        <div class="stat"><b>120+</b><span>PIEZAS CREADAS</span></div>
+        <div class="stat"><b>4</b><span>AÑOS PINTANDO</span></div>
+        <div class="stat"><b>100%</b><span>HECHO A MANO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Galería</span>
+        <h2>Lo último que ha salido del taller</h2>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="todo">Todo</button>
+        <button class="filter-btn" data-filter="cuadro">Cuadros</button>
+        <button class="filter-btn" data-filter="manualidad">Manualidades</button>
+      </div>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- las tarjetas se generan con JS desde el array de más abajo -->
+    </div>
+  </div>
+</section>
+
+<section class="section second-hand" id="segunda-mano">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker sh-kicker">Segunda mano</span>
+        <h2>Ropa y libros infantiles que ya no usamos</h2>
+        <p class="sh-sub">Cosas en buen estado, a precio bajo. Se renuevan según lo que va saliendo, así que si te gusta algo, no tardes en preguntar.</p>
+      </div>
+      <div class="filters">
+        <button class="filter-btn sh-filter-btn active" data-shfilter="todo">Todo</button>
+        <button class="filter-btn sh-filter-btn" data-shfilter="ropa">Ropa</button>
+        <button class="filter-btn sh-filter-btn" data-shfilter="libro">Libros</button>
+      </div>
+    </div>
+
+    <div class="sh-grid" id="secondHandGrid">
+      <!-- se genera con JS desde el array shItems -->
+    </div>
+  </div>
+</section>
+
+<section class="section" id="trabajos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker" style="color:var(--violet);">Trabajos y encargos</span>
+        <h2>Otras piezas pintadas a mano</h2>
+        <p class="sh-sub">Bolsas y prendas pintadas por mí a partir de diseños que me gustan. Son trabajos personalizados, no piezas a la venta.</p>
+      </div>
+    </div>
+
+    <div class="tw-grid" id="trabajosGrid">
+      <!-- se genera con JS desde el array trabajos -->
+    </div>
+  </div>
+</section>
+
+<section class="section process" id="proceso">
+  <div class="wrap">
+    <span class="kicker">Cómo comprar</span>
+    <h2 style="margin-bottom:44px;">No hay carrito de compra. Hay una conversación.</h2>
+    <div class="process-grid">
+      <div class="p-card">
+        <span class="num">01</span>
+        <h3>Elige una pieza</h3>
+        <p>Mira la galería y guarda el nombre de la obra que te guste, o cuéntame qué tipo de pieza tienes en mente si quieres un encargo.</p>
+      </div>
+      <div class="p-card">
+        <span class="num">02</span>
+        <h3>Escríbeme</h3>
+        <p>Pulsa "Consultar" en la pieza o escríbeme directamente por WhatsApp o email con el nombre de la obra.</p>
+      </div>
+      <div class="p-card">
+        <span class="num">03</span>
+        <h3>Cerramos precio y envío</h3>
+        <p>Te confirmo si sigue disponible, hablamos precio final, embalaje y si prefieres recogerla o que te la envíe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contacto" style="padding-top:20px;">
+  <div class="contact">
+    <div class="contact-inner">
+      <h2>¿Te ha gustado algo?</h2>
+      <p>Escríbeme y te cuento precio, disponibilidad y si puedo hacer una versión personalizada. Suelo responder el mismo día.</p>
+      <div class="contact-actions">
+        <a class="btn btn-white" href="https://wa.me/34647410744?text=Hola%20Mari%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20me%20interesa%20una%20pieza" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="btn btn-outline-white" href="mailto:marycruz297@gmail.com">marycruz297@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="logo"><span class="dot"></span>Mari ColMa</div>
+    <div class="foot-links">
+      <a href="#galeria">Galería</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <span class="mono" style="font-size:12px; color:rgba(27,16,53,0.5);">© 2026 Mari ColMa · piezas únicas hechas a mano</span>
+  </div>
+</footer>
+
+<script>
+  // -----------------------------------------------------------
+  // EDITA ESTE ARRAY para añadir, quitar o cambiar tus piezas.
+  // - img: pon la ruta de tu foto (ej: "imagenes/cuadro1.jpg")
+  //        o deja la clase "art-N" para usar un color de muestra.
+  // - cat: "cuadro" o "manualidad"
+  // -----------------------------------------------------------
+  const piezas = [
+    { titulo:"Sentada en el muro", cat:"cuadro", tecnica:"Acrílico sobre lienzo, con textura en relieve", desc:"Una niña de trazo ilustrado, sentada sobre un muro agrietado con ladrillo visto, acompañada de una mariposa. Fondo en grises trabajados con textura y un punto de color en el vestido.", img:"imagenes/nina-muro.png" },
+    { titulo:"Panel de superhéroes", cat:"cuadro", tecnica:"Acrílico sobre madera, técnica mixta con recorte y relieve", desc:"Cinco figuras de superhéroes clásicos del cómic, recortadas en relieve sobre un fondo de viñetas en blanco y negro. Una pieza vistosa y directa, ideal para una habitación juvenil.", img:"imagenes/heroes-comic.png" },
+    { titulo:"Retrato floral", cat:"cuadro", tecnica:"Pintura sobre lienzo, con marco de madera", desc:"Un rostro asomando entre un estallido de flores y mariposas, en tonos vivos sobre fondo oscuro. Una pieza con carácter para dar color a cualquier pared.", img:"imagenes/retrato-floral.jpg" },
+    { titulo:"Palabras para vivir", cat:"cuadro", tecnica:"Pintura sobre lienzo, con marco blanco", desc:"Un cuadro de tonos tierra con plumas pintadas a mano y un mensaje que invita a vivir con intención. Ideal para un rincón de lectura o el salón.", img:"imagenes/palabras-de-vida.png" },
+    { titulo:"Díptico de plumas", cat:"cuadro", tecnica:"Conjunto de 2 lienzos con marco blanco", desc:"Dos plumas pintadas con textura y detalles geométricos dorados, pensadas para colgar juntas. Un conjunto con mensaje que suma calidez a cualquier pared.", img:"imagenes/diptico-plumas.png" },
+    { titulo:"Bandeja personalizada con flores", cat:"manualidad", tecnica:"Madera pintada y decorada a mano · con nombres", desc:"Bandeja redonda pintada en verde suave, con un ramo de hortensias pintado a mano y nombres personalizados en el borde. Ideal para regalo familiar.", img:"imagenes/bandeja-flores.png" },
+    { titulo:"Perchero llavero bicicleta", cat:"manualidad", tecnica:"Madera y metal, pintado a mano", desc:"Perchero de pared con una bicicleta en relieve y una frase decorativa, con ganchos para llaves. Un detalle con encanto para la entrada de casa.", img:"imagenes/percha-bicicleta.png" },
+    { titulo:"Panel de recuerdos de bebé", cat:"manualidad", tecnica:"Madera recortada y pintada a mano, con hueco para foto", desc:"Panel decorativo con nombre, fecha de nacimiento y hueco para una foto, pensado para guardar el recuerdo del nacimiento. Se personaliza con los datos que quieras.", img:"imagenes/panel-recuerdos-bebe.jpg" },
+    { titulo:"Nombre en madera personalizado", cat:"manualidad", tecnica:"Letras de madera recortadas y pintadas a mano", desc:"Nombre en madera recortado letra a letra, pintado con distintos estampados y colores. Se hace a medida con el nombre que necesites.", img:"imagenes/nombre-mael-madera.jpg" },
+    { titulo:"Bola de Navidad personalizada", cat:"manualidad", tecnica:"Madera calada y pintada a mano", desc:"Bola de Navidad de madera calada con un nombre pintado en su interior. Un adorno único para el árbol, personalizable con el nombre que quieras.", img:"imagenes/bola-navidad-mael.jpg" },
+    { titulo:"Set de marcos decorados", cat:"manualidad", tecnica:"Madera con técnica mixta y texturas", desc:"Colección de marcos de fotos trabajados con distintas texturas, veladuras y frases decorativas. Cada uno con su propio estilo, para combinar en una pared de recuerdos.", img:"imagenes/marcos-decorados.jpg" },
+    { titulo:"Reloj de pared collage", cat:"manualidad", tecnica:"Madera pintada con técnica de collage decorado", desc:"Reloj de pared dividido en paneles con distintos estampados: flores, partituras y texturas en tonos turquesa y mostaza. Una pieza funcional con mucho carácter.", img:"imagenes/reloj-collage.jpg" },
+    { titulo:"Casita joyero de madera", cat:"manualidad", tecnica:"Madera pintada a mano, con cajones", desc:"Joyero con forma de casita, con tres cajones decorados y ventanitas talladas. Perfecto para guardar joyas o pequeños tesoros.", img:"imagenes/casita-joyero.jpg" },
+    { titulo:"Llaveros Reyes Magos", cat:"manualidad", tecnica:"Madera recortada y pintada a mano · set de 5", desc:"Set de llaveros con las caras de los Reyes Magos y Papá Noel, con lazos y cascabeles. Un detalle navideño hecho a mano, ideal para regalar en Navidad.", img:"imagenes/llaveros-reyes-magos.jpg" },
+    { titulo:"Organizador de escritorio personalizado", cat:"manualidad", tecnica:"Madera pintada a mano, con cajón", desc:"Organizador de escritorio a rayas de colores, con nombre y cajón para guardar pequeños objetos. Se personaliza con el nombre que quieras.", img:"imagenes/organizador-mael.jpg" },
+    { titulo:"Tiestos decorativos", cat:"manualidad", tecnica:"Metal envejecido a mano, con planta artificial", desc:"Set de dos tiestos de metal con acabado envejecido y lazos de tela, con bolas de follaje artificial. Decoración que no necesita cuidados.", img:"imagenes/tiestos-flower.jpg" },
+    { titulo:"Farol de madera", cat:"manualidad", tecnica:"Madera calada y pintada a mano", desc:"Farol de madera con forma de torreón, calado por los cuatro lados para dejar pasar la luz de una vela. Una pieza decorativa para interior o porche cubierto.", img:"imagenes/farol-madera.jpg" },
+    { titulo:"Figura decorativa niño", cat:"manualidad", tecnica:"Madera recortada y pintada a mano", desc:"Figura de madera recortada con forma de niño, pintada con detalle en la ropa y el rostro. Pensada para decorar una habitación infantil.", img:"imagenes/figura-nino.jpg" },
+    { titulo:"Cajas de Navidad personalizadas", cat:"manualidad", tecnica:"Cajas de madera decoradas a mano, con nombre · set apilable", desc:"Cajas de madera apiladas, vestidas con pino nevado, acebo, lazos y un arbolito en miniatura. Cada una lleva un nombre tallado, ideal para regalo personalizado en Navidad.", img:"imagenes/cajas-navidad.png" },
+  ];
+
+  const grid = document.getElementById('galleryGrid');
+
+  function render(filter){
+    grid.innerHTML = "";
+    const rotaciones = ['-2deg','1.5deg','-1deg','2deg','0.5deg','-1.5deg'];
+    let i = 0;
+    piezas.filter(p => filter === 'todo' || p.cat === filter).forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'g-card';
+      card.style.setProperty('--r', rotaciones[i % rotaciones.length]);
+      i++;
+      const catLabel = p.cat === 'cuadro' ? 'Cuadro' : 'Manualidad';
+      const catClass = p.cat === 'cuadro' ? 'cat-cuadro' : 'cat-manualidad';
+      const artHtml = p.img
+        ? `<img class="art" src="${p.img}" alt="${p.titulo}">`
+        : `<div class="art ${p.artClass}"></div>`;
+      card.innerHTML = `
+        <div class="tape"></div>
+        ${artHtml}
+        <span class="cat ${catClass} mono">${catLabel}</span>
+        <h3>${p.titulo}</h3>
+        <div class="desc">${p.desc}</div>
+        <div class="row row-single">
+          <button class="ask-btn" onclick="window.open('https://wa.me/34647410744?text=' + encodeURIComponent('Hola Mari, me interesa la pieza: ${p.titulo}'), '_blank')">Consultar precio</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    if(piezas.filter(p => filter === 'todo' || p.cat === filter).length === 0){
+      grid.innerHTML = '<div class="swap-note">Aún no hay piezas en esta categoría.</div>';
+    }
+  }
+
+  document.querySelectorAll('.filter-btn:not(.sh-filter-btn)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn:not(.sh-filter-btn)').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.filter);
+    });
+  });
+
+  render('todo');
+
+  // -----------------------------------------------------------
+  // SEGUNDA MANO — ropa y libros infantiles
+  // EDITA ESTE ARRAY para añadir o quitar artículos.
+  // - tipo: "ropa" o "libro"
+  // - img: ruta de la foto (ej: "imagenes/jersey-azul.jpg")
+  // -----------------------------------------------------------
+  const shItems = [
+    // Aún no hay artículos reales — se añadirán aquí cuando subas fotos de ropa o libros.
+  ];
+
+  const shGrid = document.getElementById('secondHandGrid');
+
+  function renderSH(filter){
+    shGrid.innerHTML = "";
+    const filtrados = shItems.filter(it => filter === 'todo' || it.tipo === filter);
+
+    if(filtrados.length === 0){
+      shGrid.innerHTML = '<div class="swap-note">Aún no hay artículos en esta categoría.</div>';
+      return;
+    }
+
+    filtrados.forEach(it => {
+      const card = document.createElement('div');
+      card.className = 'sh-card';
+      const tagLabel = it.tipo === 'ropa' ? 'Ropa' : 'Libro';
+      const artHtml = it.img
+        ? `<img class="sh-art" src="${it.img}" alt="${it.titulo}">`
+        : `<div class="sh-art"></div>`;
+      card.innerHTML = `
+        ${artHtml}
+        <div class="sh-body">
+          <span class="sh-tag mono">${tagLabel}</span>
+          <h4>${it.titulo}</h4>
+          <div class="sh-meta">${it.meta}</div>
+          <div class="sh-row">
+            <span class="sh-price">${it.precio}</span>
+            <button class="sh-btn" onclick="window.open('https://wa.me/34647410744?text=' + encodeURIComponent('Hola Mari, me interesa: ${it.titulo}'), '_blank')">Reservar</button>
+          </div>
+        </div>
+      `;
+      shGrid.appendChild(card);
+    });
+  }
+
+  document.querySelectorAll('.sh-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sh-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderSH(btn.dataset.shfilter);
+    });
+  });
+
+  renderSH('todo');
+
+  // -----------------------------------------------------------
+  // TRABAJOS Y ENCARGOS — piezas pintadas a partir de otros diseños,
+  // sin botón de venta (no son piezas originales a la venta).
+  // -----------------------------------------------------------
+  const trabajos = [
+    { titulo:"Mochila gato brujo", nota:"Bolsa mochila pintada a mano", img:"imagenes/mochila-gato-brujo.png" },
+    { titulo:"Camiseta retrato dorado", nota:"Camiseta pintada a mano", img:"imagenes/camiseta-retrato.png" },
+    { titulo:"Bolsa mensaje de bruja", nota:"Bolsa tote pintada a mano", img:"imagenes/bolsa-bruja.jpg" },
+    { titulo:"Bolsa hada mariposa", nota:"Bolsa tote pintada a mano", img:"imagenes/bolsa-hada.jpg" },
+  ];
+
+  const twGrid = document.getElementById('trabajosGrid');
+  trabajos.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 'tw-card';
+    card.innerHTML = `
+      <img class="tw-art" src="${t.img}" alt="${t.titulo}">
+      <div class="tw-body">
+        <h4>${t.titulo}</h4>
+        <span class="tw-note">${t.nota}</span>
+      </div>
+    `;
+    twGrid.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
