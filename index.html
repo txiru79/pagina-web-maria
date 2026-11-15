@@ -2,11 +2,37 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<!-- This site is hosted on Netlify. Anyone can build and deploy a site
-     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=cecf9011-b080-465b-9bdc-8b5a8715957d
-     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mari ColMa · Cuadros y Manualidades</title>
+<title>Mari ColMa · Cuadros y Manualidades hechas a mano en Vitoria-Gasteiz</title>
+<meta name="description" content="Cuadros y manualidades hechos a mano por Mari en Vitoria-Gasteiz. Piezas únicas en acrílico y óleo, manualidades personalizadas y encargos a medida. Escríbeme por WhatsApp.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#FFF9F2">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://pagina-web-maria.netlify.app/">
+<meta property="og:title" content="Mari ColMa · Cuadros y Manualidades hechas a mano">
+<meta property="og:description" content="Cada pieza sale de mi mesa, no de una fábrica. Cuadros y manualidades únicas, hechas a mano en Vitoria-Gasteiz.">
+<meta property="og:image" content="https://pagina-web-maria.netlify.app/imagenes/retrato-floral.jpg">
+<meta property="og:image:alt" content="Retrato floral, cuadro pintado a mano por Mari ColMa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mari ColMa · Cuadros y Manualidades hechas a mano">
+<meta name="twitter:description" content="Cada pieza sale de mi mesa, no de una fábrica. Cuadros y manualidades únicas, hechas a mano en Vitoria-Gasteiz.">
+<meta name="twitter:image" content="https://pagina-web-maria.netlify.app/imagenes/retrato-floral.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Mari ColMa",
+  "description": "Cuadros y manualidades hechos a mano en Vitoria-Gasteiz.",
+  "email": "marycruz297@gmail.com",
+  "url": "https://pagina-web-maria.netlify.app/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Vitoria-Gasteiz",
+    "addressCountry": "ES"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800;12..96,900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -20,6 +46,7 @@
     --teal:#17B8A6;
     --paper:#FFFFFF;
     --line: rgba(27,16,53,0.12);
+    --whatsapp:#25D366;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -49,7 +76,7 @@
   ::selection{background:var(--marigold); color:var(--ink);}
 
   /* ---------- FOCUS STATES ---------- */
-  a:focus-visible, button:focus-visible{
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
     outline:3px solid var(--violet);
     outline-offset:3px;
     border-radius:4px;
@@ -77,7 +104,7 @@
     background:var(--coral);
     display:inline-block;
   }
-  nav.links{display:flex; gap:34px; font-size:15px; font-weight:600;}
+  nav.links{display:flex; gap:26px; font-size:15px; font-weight:600;}
   nav.links a{position:relative; padding:4px 0;}
   nav.links a::after{
     content:"";
@@ -141,6 +168,12 @@
     margin-bottom:34px;
   }
   .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-note{
+    margin-top:22px;
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    color:rgba(27,16,53,0.55);
+  }
   .btn{
     display:inline-flex; align-items:center; gap:10px;
     padding:15px 26px;
@@ -189,13 +222,6 @@
   .pin2{top:40px; left:52%; transform:rotate(5deg); z-index:3;}
   .pin3{top:250px; left:6%; transform:rotate(4deg); z-index:1; width:160px;}
   .pin4{top:220px; left:56%; transform:rotate(-6deg); z-index:2; width:170px;}
-
-  .art-a{background:linear-gradient(135deg,#FF9A8B,#FF5A5F 40%,#7C5CFC);}
-  .art-b{background:linear-gradient(160deg,#FFD86B,#FFC53D 45%,#17B8A6);}
-  .art-c{background:linear-gradient(140deg,#8FE3D0,#17B8A6 50%,#1B1035);}
-  .art-d{background:linear-gradient(150deg,#C9B6FF,#7C5CFC 55%,#FF5A5F);}
-  .art-e{background:linear-gradient(145deg,#FFC1CC,#FF5A5F 50%,#FFC53D);}
-  .art-f{background:linear-gradient(150deg,#B7E4FF,#17B8A6 45%,#7C5CFC);}
 
   /* divider */
   .brush-divider{
@@ -308,6 +334,13 @@
   }
   .cat-cuadro{background:rgba(255,90,95,0.18);}
   .cat-manualidad{background:rgba(23,184,166,0.2);}
+  .g-card .tecnica{
+    font-family:'Space Mono',monospace;
+    font-size:11.5px;
+    color:rgba(27,16,53,0.55);
+    margin-bottom:10px;
+    line-height:1.5;
+  }
   .g-card .desc{font-size:14px; color:rgba(27,16,53,0.65); margin-bottom:14px; line-height:1.5;}
   .g-card .row{display:flex; align-items:center; justify-content:space-between;}
   .g-card .row-single{justify-content:center;}
@@ -320,16 +353,6 @@
     transition:transform .15s ease;
   }
   .ask-btn:hover{transform:scale(1.06);}
-
-  .art-1{background:linear-gradient(135deg,#FFB199,#FF5A5F 50%,#7C5CFC);}
-  .art-2{background:linear-gradient(150deg,#FFE79A,#FFC53D 55%,#17B8A6);}
-  .art-3{background:linear-gradient(140deg,#A0F0DC,#17B8A6 50%,#7C5CFC);}
-  .art-4{background:linear-gradient(160deg,#D8C6FF,#7C5CFC 55%,#FF5A5F);}
-  .art-5{background:linear-gradient(145deg,#FFC9D0,#FF5A5F 55%,#FFC53D);}
-  .art-6{background:linear-gradient(150deg,#C3EEFF,#17B8A6 45%,#1B1035);}
-  .art-7{background:linear-gradient(140deg,#FFE0B3,#FF5A5F 40%,#7C5CFC);}
-  .art-8{background:linear-gradient(155deg,#B8F1E0,#17B8A6 50%,#FFC53D);}
-  .art-9{background:linear-gradient(135deg,#E3D2FF,#7C5CFC 50%,#17B8A6);}
 
   /* ---------- SEGUNDA MANO ---------- */
   .second-hand{
@@ -384,6 +407,65 @@
   }
   .sh-btn:hover{transform:scale(1.06);}
 
+  /* ---------- ENCARGOS ---------- */
+  .encargos{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .encargos-kicker{color:var(--violet);}
+  .idea-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
+    margin-bottom:48px;
+  }
+  .idea-card{
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    padding:24px;
+    background:var(--cream);
+  }
+  .idea-card .idea-ico{
+    font-size:26px; margin-bottom:12px; display:block;
+  }
+  .idea-card h3{font-size:19px; margin-bottom:8px;}
+  .idea-card p{font-size:14.5px; line-height:1.6; color:rgba(27,16,53,0.68);}
+  .encargo-form{
+    max-width:640px;
+    margin:0 auto;
+    background:var(--cream);
+    border:1.5px solid var(--line);
+    border-radius:16px;
+    padding:32px;
+  }
+  .encargo-form h3{font-size:23px; margin-bottom:8px;}
+  .encargo-form .form-sub{
+    font-size:14.5px; color:rgba(27,16,53,0.65); line-height:1.55;
+    margin-bottom:24px;
+  }
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block; font-weight:600; font-size:14px; margin-bottom:7px;
+  }
+  .field select, .field input, .field textarea{
+    width:100%;
+    font-family:'Inter', sans-serif;
+    font-size:15px;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1.5px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+  }
+  .field textarea{min-height:110px; resize:vertical;}
+  .form-note{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:rgba(27,16,53,0.55);
+    margin-top:14px;
+    text-align:center;
+  }
+  .form-error{
+    display:none;
+    font-size:13.5px; font-weight:600; color:#B3261E;
+    margin-bottom:14px;
+  }
+
   /* ---------- TRABAJOS Y ENCARGOS ---------- */
   .tw-grid{
     display:grid;
@@ -404,6 +486,7 @@
     font-size:11px;
     color:rgba(27,16,53,0.5);
   }
+  .tw-cta{margin-top:36px; text-align:center;}
 
   /* placeholder note */
   .swap-note{
@@ -421,7 +504,7 @@
   .process{background:var(--ink); color:var(--cream);}
   .process .kicker{color:var(--marigold);}
   .process-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:30px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:26px;
   }
   .p-card{
     background:rgba(255,249,242,0.06);
@@ -436,6 +519,24 @@
   }
   .p-card h3{font-size:21px; margin-bottom:10px;}
   .p-card p{font-size:14.5px; line-height:1.6; color:rgba(255,249,242,0.68);}
+
+  /* ---------- OPINIONES ---------- */
+  .opiniones{background:var(--cream);}
+  .op-card{
+    max-width:640px;
+    margin:0 auto;
+    background:var(--paper);
+    border:1.5px dashed var(--line);
+    border-radius:16px;
+    padding:40px 32px;
+    text-align:center;
+  }
+  .op-card .op-stars{font-size:22px; letter-spacing:4px; color:var(--marigold); margin-bottom:14px;}
+  .op-card p{font-size:16px; line-height:1.65; color:rgba(27,16,53,0.72); margin-bottom:24px;}
+  .op-card .op-note{
+    font-family:'Space Mono',monospace;
+    font-size:12px; color:rgba(27,16,53,0.5); margin-top:16px;
+  }
 
   /* ---------- CONTACT ---------- */
   .contact{
@@ -473,6 +574,29 @@
   .foot-grid .logo{font-size:18px;}
   .foot-links{display:flex; gap:22px; font-size:14px; font-family:'Space Mono',monospace;}
   .foot-links a:hover{color:var(--coral);}
+  .foot-made{
+    width:100%;
+    font-family:'Space Mono',monospace;
+    font-size:12px; color:rgba(27,16,53,0.5);
+    text-align:center;
+    margin-top:8px;
+  }
+
+  /* ---------- WHATSAPP FLOTANTE ---------- */
+  .wa-float{
+    position:fixed;
+    right:22px; bottom:22px; z-index:60;
+    display:flex; align-items:center; gap:9px;
+    background:var(--whatsapp);
+    color:#fff;
+    font-weight:700; font-size:15px;
+    padding:13px 20px 13px 16px;
+    border-radius:100px;
+    box-shadow:0 12px 26px rgba(27,16,53,0.28);
+    transition:transform .18s ease;
+  }
+  .wa-float:hover{transform:translateY(-2px) scale(1.03);}
+  .wa-float svg{width:22px; height:22px; fill:#fff;}
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width:860px){
@@ -483,18 +607,22 @@
     .gallery-grid{grid-template-columns:repeat(2,1fr);}
     .sh-grid{grid-template-columns:repeat(3,1fr);}
     .tw-grid{grid-template-columns:repeat(3,1fr);}
-    .process-grid{grid-template-columns:1fr;}
+    .idea-grid{grid-template-columns:1fr;}
+    .process-grid{grid-template-columns:repeat(2,1fr);}
     .contact{margin:0 16px; padding:52px 28px;}
     .section{padding:70px 20px;}
+    .encargo-form{padding:24px 20px;}
   }
   @media (max-width:540px){
     .gallery-grid{grid-template-columns:1fr;}
     .sh-grid{grid-template-columns:repeat(2,1fr);}
     .tw-grid{grid-template-columns:repeat(2,1fr);}
+    .process-grid{grid-template-columns:1fr;}
     .hero{padding:64px 20px 80px;}
     .nav{padding:16px 20px;}
     .stat-row{gap:26px;}
     .pinboard{display:none;}
+    .wa-float{padding:12px 16px 12px 14px; font-size:14px;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -503,16 +631,16 @@
 </style>
 </head>
 <body>
-
 <header>
   <div class="nav">
     <div class="logo"><span class="dot"></span>Mari ColMa</div>
     <nav class="links">
       <a href="#galeria">Galería</a>
       <a href="#segunda-mano">Segunda mano</a>
-      <a href="#trabajos">Encargos</a>
+      <a href="#encargos">Encargos</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#proceso">Cómo comprar</a>
+      <a href="#opiniones">Opiniones</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <a class="nav-cta" href="#contacto">Pedir una pieza</a>
@@ -527,8 +655,9 @@
       <p class="lede">Pinto cuadros y hago manualidades una a una, con materiales que elijo yo misma. Si algo te gusta, escríbeme y hablamos del precio y los plazos.</p>
       <div class="hero-actions">
         <a class="btn btn-solid" href="#galeria">Ver la galería</a>
-        <a class="btn btn-ghost" href="#contacto">Escríbeme por WhatsApp</a>
+        <a class="btn btn-ghost" href="#encargos">Pedir un encargo</a>
       </div>
+      <p class="hero-note">Envío a toda España · Recogida en Vitoria-Gasteiz</p>
     </div>
     <div class="pinboard" aria-hidden="true">
       <div class="pin-card pin1"><div class="tape"></div><img class="art" src="imagenes/nina-muro.png" alt="Sentada en el muro"><span class="cap">acrílico · cuadro</span></div>
@@ -569,6 +698,7 @@
       <div>
         <span class="kicker">Galería</span>
         <h2>Lo último que ha salido del taller</h2>
+        <p class="sh-sub">Todas las piezas son únicas. Si te gusta una, pulsa «Consultar precio» y te digo si sigue disponible.</p>
       </div>
       <div class="filters">
         <button class="filter-btn active" data-filter="todo">Todo</button>
@@ -604,18 +734,76 @@
   </div>
 </section>
 
+<section class="section encargos" id="encargos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker encargos-kicker">Encargos a medida</span>
+        <h2>¿Quieres algo hecho solo para ti?</h2>
+        <p class="sh-sub">Nombres en madera, cuadros a partir de una foto, regalos personalizados. Cuéntame qué tienes en mente y te digo si puedo hacerlo, cuánto cuesta y cuánto tardo.</p>
+      </div>
+    </div>
+
+    <div class="idea-grid">
+      <div class="idea-card">
+        <span class="idea-ico">🎁</span>
+        <h3>Regalo con nombre</h3>
+        <p>Nombre en madera, bola de Navidad, panel de bebé o bandeja con nombres. Se hace a medida con los datos que me des.</p>
+      </div>
+      <div class="idea-card">
+        <span class="idea-ico">🖼️</span>
+        <h3>Cuadro a partir de una foto</h3>
+        <p>Un retrato, una escena o un rincón que te guste, pintado a mano en acrílico u óleo sobre lienzo o madera.</p>
+      </div>
+      <div class="idea-card">
+        <span class="idea-ico">✂️</span>
+        <h3>Manualidad a medida</h3>
+        <p>Bandeja, farol, organizador o reloj con tus colores y medidas. Dime qué necesitas y lo diseñamos juntas.</p>
+      </div>
+    </div>
+
+    <form class="encargo-form" id="encargoForm">
+      <h3>Pide tu encargo</h3>
+      <p class="form-sub">Rellena esto y se abre WhatsApp con tu mensaje ya escrito. Sin cuentas ni registros.</p>
+      <p class="form-error" id="formError">Cuéntame un poco qué quieres, para poder contestarte con el precio y el plazo.</p>
+      <div class="field">
+        <label for="encargoTipo">¿Qué quieres?</label>
+        <select id="encargoTipo">
+          <option>Cuadro personalizado</option>
+          <option>Manualidad con nombre</option>
+          <option>Regalo personalizado</option>
+          <option>Otra idea</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="encargoDetalles">Cuéntame los detalles</label>
+        <textarea id="encargoDetalles" placeholder="Nombre, colores, medidas, fecha en la que lo necesitas..."></textarea>
+      </div>
+      <div class="field">
+        <label for="encargoNombre">Tu nombre (opcional)</label>
+        <input type="text" id="encargoNombre" placeholder="Tu nombre">
+      </div>
+      <button class="btn btn-solid" type="submit" style="width:100%; justify-content:center; cursor:pointer;">Enviar por WhatsApp</button>
+      <p class="form-note">El mensaje se abre en WhatsApp. Suelo responder el mismo día.</p>
+    </form>
+  </div>
+</section>
+
 <section class="section" id="trabajos">
   <div class="wrap">
     <div class="section-head">
       <div>
-        <span class="kicker" style="color:var(--violet);">Trabajos y encargos</span>
-        <h2>Otras piezas pintadas a mano</h2>
-        <p class="sh-sub">Bolsas y prendas pintadas por mí a partir de diseños que me gustan. Son trabajos personalizados, no piezas a la venta.</p>
+        <span class="kicker" style="color:var(--violet);">Trabajos personalizados</span>
+        <h2>Ejemplos de encargos</h2>
+        <p class="sh-sub">Bolsas y prendas pintadas por mí a partir de diseños que me gustan. Son ejemplos de lo que puedo hacer por encargo, no piezas a la venta.</p>
       </div>
     </div>
 
     <div class="tw-grid" id="trabajosGrid">
       <!-- se genera con JS desde el array trabajos -->
+    </div>
+    <div class="tw-cta">
+      <a class="btn btn-solid" href="#encargos">Pedir un encargo como este</a>
     </div>
   </div>
 </section>
@@ -633,13 +821,35 @@
       <div class="p-card">
         <span class="num">02</span>
         <h3>Escríbeme</h3>
-        <p>Pulsa "Consultar" en la pieza o escríbeme directamente por WhatsApp o email con el nombre de la obra.</p>
+        <p>Pulsa «Consultar» en la pieza o escríbeme directamente por WhatsApp o email con el nombre de la obra.</p>
       </div>
       <div class="p-card">
         <span class="num">03</span>
         <h3>Cerramos precio y envío</h3>
         <p>Te confirmo si sigue disponible, hablamos precio final, embalaje y si prefieres recogerla o que te la envíe.</p>
       </div>
+      <div class="p-card">
+        <span class="num">04</span>
+        <h3>Envío o recogida</h3>
+        <p>Te lo envío a casa o lo recoges en Vitoria-Gasteiz. El precio del envío depende del tamaño y el peso, y te lo confirmo antes de cerrar la compra. El pago lo acordamos por WhatsApp antes de enviar nada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section opiniones" id="opiniones">
+  <div class="wrap">
+    <div class="section-head" style="justify-content:center; text-align:center;">
+      <div>
+        <span class="kicker">Opiniones</span>
+        <h2>Lo que dicen de mis piezas</h2>
+      </div>
+    </div>
+    <div class="op-card">
+      <div class="op-stars">★★★★★</div>
+      <p>¿Ya tienes una pieza de Mari? Tu opinión ayuda a otras personas a confiar. Escríbeme por WhatsApp con lo que te pareció y la publico aquí con tu nombre, si quieres.</p>
+      <a class="btn btn-solid" href="https://wa.me/34647410744?text=Hola%20Mari%2C%20te%20dejo%20mi%20opini%C3%B3n%20sobre%20tu%20pieza%3A%20" target="_blank" rel="noopener">Enviar mi opinión</a>
+      <p class="op-note">Las opiniones se publican solo con el permiso de quien las escribe.</p>
     </div>
   </div>
 </section>
@@ -652,6 +862,8 @@
       <div class="contact-actions">
         <a class="btn btn-white" href="https://wa.me/34647410744?text=Hola%20Mari%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20me%20interesa%20una%20pieza" target="_blank" rel="noopener">Escribir por WhatsApp</a>
         <a class="btn btn-outline-white" href="mailto:marycruz297@gmail.com">marycruz297@gmail.com</a>
+        <!-- PENDIENTE: pon aquí el Instagram de Mari, por ejemplo https://www.instagram.com/usuario -->
+        <a class="btn btn-outline-white" id="instagram-link" href="#" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
   </div>
@@ -662,12 +874,19 @@
     <div class="logo"><span class="dot"></span>Mari ColMa</div>
     <div class="foot-links">
       <a href="#galeria">Galería</a>
+      <a href="#encargos">Encargos</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto">Contacto</a>
     </div>
     <span class="mono" style="font-size:12px; color:rgba(27,16,53,0.5);">© 2026 Mari ColMa · piezas únicas hechas a mano</span>
+    <p class="foot-made">Hecho a mano en Vitoria-Gasteiz</p>
   </div>
 </footer>
+
+<a class="wa-float" href="https://wa.me/34647410744?text=Hola%20Mari%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20me%20interesa%20una%20pieza" target="_blank" rel="noopener" aria-label="Escribir a Mari por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.95.53 3.78 1.45 5.35L2 22l4.82-1.4A9.9 9.9 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.22-.48-4.55-1.3l-.33-.2-2.87.83.83-2.8-.21-.34A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.6c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.64-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+  WhatsApp
+</a>
 
 <script>
   // -----------------------------------------------------------
@@ -712,13 +931,14 @@
       const catLabel = p.cat === 'cuadro' ? 'Cuadro' : 'Manualidad';
       const catClass = p.cat === 'cuadro' ? 'cat-cuadro' : 'cat-manualidad';
       const artHtml = p.img
-        ? `<img class="art" src="${p.img}" alt="${p.titulo}">`
-        : `<div class="art ${p.artClass}"></div>`;
+        ? `<img class="art" src="${p.img}" alt="${p.titulo}" loading="lazy" decoding="async">`
+        : `<div class="art"></div>`;
       card.innerHTML = `
         <div class="tape"></div>
         ${artHtml}
         <span class="cat ${catClass} mono">${catLabel}</span>
         <h3>${p.titulo}</h3>
+        <div class="tecnica">${p.tecnica}</div>
         <div class="desc">${p.desc}</div>
         <div class="row row-single">
           <button class="ask-btn" onclick="window.open('https://wa.me/34647410744?text=' + encodeURIComponent('Hola Mari, me interesa la pieza: ${p.titulo}'), '_blank')">Consultar precio</button>
@@ -768,7 +988,7 @@
       card.className = 'sh-card';
       const tagLabel = it.tipo === 'ropa' ? 'Ropa' : 'Libro';
       const artHtml = it.img
-        ? `<img class="sh-art" src="${it.img}" alt="${it.titulo}">`
+        ? `<img class="sh-art" src="${it.img}" alt="${it.titulo}" loading="lazy" decoding="async">`
         : `<div class="sh-art"></div>`;
       card.innerHTML = `
         ${artHtml}
@@ -812,13 +1032,33 @@
     const card = document.createElement('div');
     card.className = 'tw-card';
     card.innerHTML = `
-      <img class="tw-art" src="${t.img}" alt="${t.titulo}">
+      <img class="tw-art" src="${t.img}" alt="${t.titulo}" loading="lazy" decoding="async">
       <div class="tw-body">
         <h4>${t.titulo}</h4>
         <span class="tw-note">${t.nota}</span>
       </div>
     `;
     twGrid.appendChild(card);
+  });
+
+  // -----------------------------------------------------------
+  // FORMULARIO DE ENCARGOS — abre WhatsApp con el mensaje ya escrito.
+  // -----------------------------------------------------------
+  document.getElementById('encargoForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const tipo = document.getElementById('encargoTipo').value;
+    const detalles = document.getElementById('encargoDetalles').value.trim();
+    const nombre = document.getElementById('encargoNombre').value.trim();
+    const error = document.getElementById('formError');
+    if(!detalles){
+      error.style.display = 'block';
+      document.getElementById('encargoDetalles').focus();
+      return;
+    }
+    error.style.display = 'none';
+    let mensaje = 'Hola Mari, quiero pedir un encargo: ' + tipo + '. ' + detalles;
+    if(nombre){ mensaje += ' (Soy ' + nombre + ')'; }
+    window.open('https://wa.me/34647410744?text=' + encodeURIComponent(mensaje), '_blank');
   });
 </script>
 
